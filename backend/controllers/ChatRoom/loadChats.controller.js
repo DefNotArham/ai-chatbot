@@ -1,7 +1,7 @@
 import ChatRoom from "../../model/ChatRoom.model.js";
 
 const loadChatsController = async (req, res) => {
-  const { sessionId } = req.body;
+  const { sessionId } = req.query;
   try {
     if (!sessionId)
       return res
