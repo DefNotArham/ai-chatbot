@@ -1,8 +1,19 @@
-import React from "react";
-
 import { FaPlus } from "react-icons/fa6";
 
+import useChatroomStore from "../stores/Chatroom.store.js";
+import { useEffect } from "react";
+
 const Sidebar = () => {
+  const { ChatRooms, loadChats, createChatRoom } = useChatroomStore();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await loadChats(sessionId);
+    };
+
+    fetchData();
+  }, [ChatRooms]);
+
   return (
     <div className="bg-sidebar-background p-6">
       <h1 className="text-3xl font-bold">AI Assistant</h1>
