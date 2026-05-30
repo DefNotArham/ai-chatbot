@@ -1,7 +1,7 @@
 import ChatRoom from "../../model/ChatRoom.model.js";
 
 const createNewChatController = async (req, res) => {
-  const { RoomName, sessionId } = req.body;
+  const { roomName, sessionId } = req.body;
 
   try {
     if (!sessionId)
@@ -10,13 +10,13 @@ const createNewChatController = async (req, res) => {
         message: "Session ID required",
       });
 
-    if (!RoomName)
+    if (!roomName)
       return res
         .status(400)
         .json({ success: false, message: "Chat name required" });
 
     const newRoom = new ChatRoom({
-      name: RoomName,
+      name: roomName,
       sessionId,
     });
 

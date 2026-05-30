@@ -11,6 +11,6 @@ const app = express();
 connectDb();
 
 app.use(express.json());
-app.use("/Chatroom", ChatRoomRoutes);
+app.use("/chatroom", ChatRoomRoutes);
 
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
