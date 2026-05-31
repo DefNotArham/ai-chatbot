@@ -12,8 +12,6 @@ const useChatroomStore = create((set) => ({
         params: { sessionId },
       });
 
-      console.log("LOAD CHATS RESPONSE:", response.data);
-
       set((state) => ({
         ChatRooms: response.data.Chatrooms,
       }));
