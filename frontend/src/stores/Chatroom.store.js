@@ -9,10 +9,10 @@ const useChatroomStore = create((set) => ({
   loadChats: async (sessionId) => {
     try {
       const response = await axios.get(`${API_URL}/chatroom/load-chats`, {
-        params: {
-          sessionId,
-        },
+        params: { sessionId },
       });
+
+      console.log("LOAD CHATS RESPONSE:", response.data);
 
       set((state) => ({
         ChatRooms: response.data.Chatrooms,

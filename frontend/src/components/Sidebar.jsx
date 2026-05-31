@@ -7,12 +7,12 @@ const Sidebar = () => {
   const { ChatRooms, loadChats, createChatRoom } = useChatroomStore();
 
   useEffect(() => {
-    const fetchData = async () => {
-      await loadChats(sessionId);
-    };
+    const sessionId = localStorage.getItem("sessionId");
 
-    fetchData();
-  }, [ChatRooms]);
+    if (sessionId) {
+      loadChats(sessionId);
+    }
+  }, []);
 
   return (
     <div className="bg-sidebar-background p-6">
@@ -24,7 +24,9 @@ const Sidebar = () => {
         </button>
 
         <div>
-          <button></button>
+          {ChatRooms.map((c) => (
+            <button key={c._id}>{c.name}</button>
+          ))}
         </div>
       </div>
     </div>

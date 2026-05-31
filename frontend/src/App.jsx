@@ -8,6 +8,8 @@ const App = () => {
     if (!localStorage.getItem("sessionId")) {
       localStorage.setItem("sessionId", crypto.randomUUID());
     }
+
+    console.log(localStorage.getItem("sessionId"));
   }, []);
 
   return (
