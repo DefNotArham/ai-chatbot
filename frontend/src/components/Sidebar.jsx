@@ -23,9 +23,9 @@ const Sidebar = () => {
           New Chat
         </button>
 
-        <div>
+        <div className="flex flex-col">
           {ChatRooms.map((c) => (
-            <button key={c._id}>{c.name}</button>
+            <button key={c?._id}>{c?.name}</button>
           ))}
         </div>
       </div>
