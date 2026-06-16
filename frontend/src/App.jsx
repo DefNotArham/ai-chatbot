@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import Sidebar from "./components/Sidebar";
 import Chat from "./components/Chat";
+import Box from "./components/Box";
 
 const App = () => {
   useEffect(() => {
@@ -12,10 +13,10 @@ const App = () => {
 
   return (
     <div className="bg-background min-h-screen text-white px-8 py-5 ">
-      <div className="border border-gray-600 rounded-2xl overflow-hidden h-[94vh] flex justify-between">
+      <Box>
         <Sidebar />
         <Chat />
-      </div>
+      </Box>
     </div>
   );
 };

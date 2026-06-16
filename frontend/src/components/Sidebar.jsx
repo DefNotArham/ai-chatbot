@@ -15,17 +15,22 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div className="bg-sidebar-background p-6">
+    <div className="bg-sidebar-background p-6 w-[20%]">
       <h1 className="text-3xl font-bold">AI Assistant</h1>
       <div>
-        <button className="bg-azure-blue flex items-center gap-1 text-sm w-50 mt-6 h-10 px-3 rounded-lg font-bold cursor-pointer">
+        <button className="bg-azure-blue flex items-center gap-1 text-sm w-full mt-6 h-10 px-3 rounded-lg font-bold cursor-pointer">
           <FaPlus />
           New Chat
         </button>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2 mt-5 w-full">
           {ChatRooms.map((c) => (
-            <button key={c?._id}>{c?.name}</button>
+            <div
+              className="bg-white/4 text-sm h-10 px-3 w-full rounded-lg cursor-pointer flex items-center overflow-hidden"
+              key={c?._id}
+            >
+              <span className="truncate w-full">{c?.name}</span>
+            </div>
           ))}
         </div>
       </div>

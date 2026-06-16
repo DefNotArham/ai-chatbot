@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Assistant</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+
+      body {
+        background: #0f172a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        color: white;
+      }
+
+      .app {
+        width: 95%;
+        max-width: 1400px;
+        height: 92vh;
+        background: #111827;
+        border-radius: 24px;
+        overflow: hidden;
+        display: flex;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Sidebar */
+
+      .sidebar {
+        width: 280px;
+        background: #0b1220;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .new-chat {
+        background: #2563eb;
+        border: none;
+        color: white;
+        padding: 14px;
+        border-radius: 14px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.2s;
+      }
+
+      .new-chat:hover {
+        background: #1d4ed8;
+      }
+
+      .history {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow-y: auto;
+      }
+
+      .history-item {
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 14px;
+      }
+
+      .history-item:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      /* Main Content */
+
+      .main {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+      }
+
+      .home {
+        width: 100%;
+        max-width: 900px;
+        text-align: center;
+      }
+
+      .home h1 {
+        font-size: 52px;
+        font-weight: 700;
+        margin-bottom: 35px;
+      }
+
+      .input-wrapper {
+        background: #1e293b;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .input-wrapper textarea {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        resize: none;
+        color: white;
+        font-size: 16px;
+        min-height: 28px;
+      }
+
+      .input-wrapper textarea::placeholder {
+        color: #94a3b8;
+      }
+
+      .send-btn {
+        width: 52px;
+        height: 52px;
+        border: none;
+        border-radius: 16px;
+        background: #2563eb;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .send-btn:hover {
+        background: #1d4ed8;
+      }
+
+      .suggestions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+
+      .suggestion {
+        padding: 12px 18px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 14px;
+      }
+
+      .suggestion:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      @media (max-width: 900px) {
+        .sidebar {
+          display: none;
+        }
+
+        .home h1 {
+          font-size: 38px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app">
+      <div class="sidebar">
+        <div class="logo">AI Assistant</div>
+
+        <button class="new-chat">+ New Chat</button>
+
+        <div class="history">
+          <div class="history-item">React Help Chat</div>
+          <div class="history-item">JavaScript Questions</div>
+          <div class="history-item">Docker Setup Help</div>
+          <div class="history-item">AI Code Review</div>
+          <div class="history-item">UI Design Ideas</div>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="home">
+          <h1>What can I help with?</h1>
+
+          <div class="input-wrapper">
+            <textarea placeholder="Ask anything..."></textarea>
+            <button class="send-btn">➜</button>
+          </div>
+
+          <div class="suggestions">
+            <div class="suggestion">Explain React</div>
+            <div class="suggestion">Generate Code</div>
+            <div class="suggestion">Debug JavaScript</div>
+            <div class="suggestion">Design UI</div>
+            <div class="suggestion">Build API</div>
+            <div class="suggestion">Review Code</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
