@@ -1,8 +1,7 @@
 import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 
-import Sidebar from "./components/Sidebar";
-import Chat from "./components/Chat";
-import Box from "./components/Box";
+import HomePage from "./page/HomePage";
 
 const App = () => {
   useEffect(() => {
@@ -12,12 +11,9 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-background min-h-screen text-white px-8 py-5 ">
-      <Box>
-        <Sidebar />
-        <Chat />
-      </Box>
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+    </Routes>
   );
 };
 
