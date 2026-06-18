@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
+import Chatroom from "./pages/Chatroom";
 
 const App = () => {
   useEffect(() => {
@@ -13,7 +14,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/chatroom/:chatroomId" element={<div> d</div>} />
+      <Route path="/chatroom/:chatroomId" element={<Chatroom />} />
     </Routes>
   );
 };

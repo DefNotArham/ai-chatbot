@@ -34,6 +34,7 @@ const Sidebar = () => {
           {ChatRooms.map((c) => (
             <div
               className="bg-white/4 text-sm h-10 px-3 w-full rounded-lg cursor-pointer flex items-center overflow-hidden"
+              onClick={() => navigate(`/chatroom/${c?._id}`)}
               key={c?._id}
             >
               <span className="truncate w-full">{c?.name}</span>
