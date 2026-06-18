@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import useChatroomStore from "../stores/Chatroom.store.js";
 
@@ -15,6 +15,7 @@ const Sidebar = () => {
   }, []);
 
   const navigate = useNavigate();
+  const { chatroomId } = useParams();
 
   return (
     <div className="bg-sidebar-background p-6 w-[20%]">
@@ -24,7 +25,9 @@ const Sidebar = () => {
           onClick={() => {
             navigate("/");
           }}
-          className="bg-azure-blue flex items-center gap-1 text-sm w-full mt-6 h-10 px-3 rounded-lg font-bold cursor-pointer"
+          className={`bg-azure-blue flex items-center gap-1 text-sm w-full mt-6 h-10 px-3 rounded-lg font-bold cursor-pointer ${
+            !chatroomId ? "bg-azure-blue/85" : "bg-azure-blue"
+          } `}
         >
           <FaPlus />
           New Chat
@@ -33,7 +36,9 @@ const Sidebar = () => {
         <div className="flex flex-col gap-2 mt-5 w-full">
           {ChatRooms.map((c) => (
             <div
-              className="bg-white/4 text-sm h-10 px-3 w-full rounded-lg cursor-pointer flex items-center overflow-hidden"
+              className={`text-sm h-10 px-3 w-full rounded-lg cursor-pointer flex items-center overflow-hidden ${
+                chatroomId === c?._id ? "bg-white/10" : "bg-white/4"
+              }`}
               onClick={() => navigate(`/chatroom/${c?._id}`)}
               key={c?._id}
             >
