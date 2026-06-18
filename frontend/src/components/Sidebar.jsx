@@ -1,7 +1,7 @@
-import { FaPlus } from "react-icons/fa6";
-
-import useChatroomStore from "../stores/Chatroom.store.js";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaPlus } from "react-icons/fa6";
+import useChatroomStore from "../stores/Chatroom.store.js";
 
 const Sidebar = () => {
   const { ChatRooms, loadChats, createChatRoom } = useChatroomStore();
@@ -14,11 +14,18 @@ const Sidebar = () => {
     }
   }, []);
 
+  const navigate = useNavigate();
+
   return (
     <div className="bg-sidebar-background p-6 w-[20%]">
       <h1 className="text-3xl font-bold">AI Assistant</h1>
       <div>
-        <button className="bg-azure-blue flex items-center gap-1 text-sm w-full mt-6 h-10 px-3 rounded-lg font-bold cursor-pointer">
+        <button
+          onClick={() => {
+            navigate("/");
+          }}
+          className="bg-azure-blue flex items-center gap-1 text-sm w-full mt-6 h-10 px-3 rounded-lg font-bold cursor-pointer"
+        >
           <FaPlus />
           New Chat
         </button>
