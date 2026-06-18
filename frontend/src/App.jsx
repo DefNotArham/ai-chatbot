@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import HomePage from "./page/HomePage";
+import HomePage from "./pages/HomePage";
 
 const App = () => {
   useEffect(() => {

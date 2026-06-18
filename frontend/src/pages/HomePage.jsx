@@ -1,7 +1,7 @@
 import React from "react";
 
 import Sidebar from "../components/Sidebar";
-import Chat from "../components/Chat";
+import NewChat from "../components/NewChat";
 import Box from "../components/Box";
 import DefaultBg from "../components/DefaultBg";
 
@@ -10,7 +10,7 @@ const HomePage = () => {
     <DefaultBg>
       <Box>
         <Sidebar />
-        <Chat />
+        <NewChat />
       </Box>
     </DefaultBg>
   );
