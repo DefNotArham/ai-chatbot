@@ -1,9 +1,6 @@
 import ChatRoom from "../../model/ChatRoom.model.js";
 import Message from "../../model/Message.model.js";
 
-import generateAiResponse from "../../ai/generateAiResponse.js";
-import generateChatTitle from "../../ai/generateChatTitle.js";
-
 const createNewchat = async (req, res) => {
   const { userMessage, sessionId } = req.body;
 

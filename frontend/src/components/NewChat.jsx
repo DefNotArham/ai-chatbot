@@ -1,7 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 
 const NewChat = () => {
+  const [input, setInput] = useState("");
+
   return (
     <div className="flex flex-col justify-center items-center w-[80%]">
       <h1 className="text-4xl font-bold">How can I help you today?</h1>
