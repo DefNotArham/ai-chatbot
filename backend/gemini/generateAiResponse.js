@@ -13,7 +13,7 @@ const generateAiResponse = async (userMessage) => {
     contents: userMessage,
   });
 
-  return response;
+  return response.text;
 };
 
 export default generateAiResponse;
