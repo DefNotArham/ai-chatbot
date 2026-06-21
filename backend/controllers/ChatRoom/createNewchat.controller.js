@@ -27,7 +27,7 @@ const createNewchatController = async (req, res) => {
     const aiResponse = await generateAiResponse(userMessage);
 
     const assistantMsg = await Message.create({
-      role: "assistant",
+      role: "ai",
       content: aiResponse,
       chatroom: chatroom._id,
     });

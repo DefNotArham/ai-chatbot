@@ -10,7 +10,7 @@ const loadChatsController = async (req, res) => {
 
     const Chatrooms = await ChatRoom.find({
       sessionId,
-    });
+    }).sort({ createdAt: -1 });
 
     res.status(200).json({ success: true, Chatrooms });
   } catch (error) {

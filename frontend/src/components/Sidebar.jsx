@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa6";
 import useChatroomStore from "../stores/Chatroom.store.js";
 
 const Sidebar = () => {
-  const { ChatRooms, loadChats, createChatRoom } = useChatroomStore();
+  const { ChatRooms, loadChats, createChatLoading } = useChatroomStore();
 
   useEffect(() => {
     const sessionId = localStorage.getItem("sessionId");
@@ -12,7 +12,7 @@ const Sidebar = () => {
     if (sessionId) {
       loadChats(sessionId);
     }
-  }, [ChatRooms]);
+  }, []);
 
   const navigate = useNavigate();
   const { chatroomId } = useParams();
@@ -45,6 +45,12 @@ const Sidebar = () => {
               <span className="truncate w-full">{c?.name}</span>
             </div>
           ))}
+
+          {createChatLoading && (
+            <div className="text-sm h-10 px-3 w-full rounded-lg bg-white/4 flex items-center">
+              <span className="animate-pulse">Generating chat...</span>
+            </div>
+          )}
         </div>
       </div>
     </div>

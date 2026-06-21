@@ -5,6 +5,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const useChatroomStore = create((set) => ({
   ChatRooms: [],
+  createChatLoading: false,
 
   loadChats: async (sessionId) => {
     try {
@@ -22,18 +23,22 @@ const useChatroomStore = create((set) => ({
 
   createChatRoom: async (userMessage, sessionId) => {
     try {
+      set({ createChatLoading: true });
+
       const response = await axios.post(`${API_URL}/chatroom/create-chatroom`, {
         userMessage,
         sessionId,
       });
 
       set((state) => ({
-        Chatrooms: [response.data.chatroom, ...state.ChatRooms],
+        ChatRooms: [response.data.chatroom, ...state.ChatRooms],
+        createChatLoading: false,
       }));
 
       return response.data;
     } catch (error) {
       console.log(error);
+      set({ createChatLoading: false });
     }
   },
 }));
