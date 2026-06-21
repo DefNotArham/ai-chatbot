@@ -12,7 +12,7 @@ const Sidebar = () => {
     if (sessionId) {
       loadChats(sessionId);
     }
-  }, []);
+  }, [ChatRooms]);
 
   const navigate = useNavigate();
   const { chatroomId } = useParams();

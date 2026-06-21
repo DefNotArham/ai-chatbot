@@ -4,7 +4,7 @@ import Message from "../../model/Message.model.js";
 import generateAiResponse from "../../gemini/generateAiResponse.js";
 import generateChatTitle from "../../gemini/generateChatTitle.js";
 
-const createNewchat = async (req, res) => {
+const createNewchatController = async (req, res) => {
   const { userMessage, sessionId } = req.body;
 
   try {
@@ -13,29 +13,29 @@ const createNewchat = async (req, res) => {
         success: false,
         message: "Message required",
       });
-
-    const chatroom = new ChatRoom({
+    const chatroom = await ChatRoom.create({
       name: "New Chat",
       sessionId,
     });
 
-    const message = new Message({
+    const userMsg = await Message.create({
       role: "user",
       content: userMessage,
       chatroom: chatroom._id,
     });
 
     const aiResponse = await generateAiResponse(userMessage);
+
+    const assistantMsg = await Message.create({
+      role: "assistant",
+      content: aiResponse,
+      chatroom: chatroom._id,
+    });
+
     const title = await generateChatTitle(userMessage);
 
     chatroom.name = title;
     await chatroom.save();
-
-    const assistantMsg = await Message.create({
-      role: "ai",
-      content: aiResponse,
-      chatroom: chatroom._id,
-    });
 
     res.status(200).json({
       success: true,
@@ -52,4 +52,4 @@ const createNewchat = async (req, res) => {
   }
 };
 
-export default createNewchat;
+export default createNewchatController;

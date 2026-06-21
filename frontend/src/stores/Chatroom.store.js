@@ -12,7 +12,7 @@ const useChatroomStore = create((set) => ({
         params: { sessionId },
       });
 
-      set((state) => ({
+      set(() => ({
         ChatRooms: response.data.Chatrooms,
       }));
     } catch (error) {
@@ -20,17 +20,18 @@ const useChatroomStore = create((set) => ({
     }
   },
 
-  createChatRoom: async (sessionId, roomName) => {
+  createChatRoom: async (userMessage, sessionId) => {
     try {
-      const response = await axios.post(`${API_URL}/chatroom/create-newChat`, {
+      const response = await axios.post(`${API_URL}/chatroom/create-chatroom`, {
+        userMessage,
         sessionId,
-        roomName,
       });
 
-      if (response.data.success)
-        set((state) => ({
-          ChatRooms: [...state.ChatRooms, response.data.room],
-        }));
+      set((state) => ({
+        Chatrooms: [response.data.chatroom, ...state.ChatRooms],
+      }));
+
+      return response.data;
     } catch (error) {
       console.log(error);
     }
