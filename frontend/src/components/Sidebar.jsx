@@ -34,6 +34,12 @@ const Sidebar = () => {
         </button>
 
         <div className="flex flex-col gap-2 mt-5 w-full">
+          {createChatLoading && (
+            <div className="text-sm h-10 px-3 w-full rounded-lg bg-white/4 flex items-center">
+              <span className="animate-pulse">Generating chat...</span>
+            </div>
+          )}
+
           {ChatRooms.map((c) => (
             <div
               className={`text-sm h-10 px-3 w-full rounded-lg cursor-pointer flex items-center overflow-hidden ${
@@ -45,12 +51,6 @@ const Sidebar = () => {
               <span className="truncate w-full">{c?.name}</span>
             </div>
           ))}
-
-          {createChatLoading && (
-            <div className="text-sm h-10 px-3 w-full rounded-lg bg-white/4 flex items-center">
-              <span className="animate-pulse">Generating chat...</span>
-            </div>
-          )}
         </div>
       </div>
     </div>
