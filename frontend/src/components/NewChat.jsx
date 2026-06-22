@@ -25,6 +25,7 @@ const NewChat = () => {
           setInput("");
 
           const response = await createChatRoom(input, sessionId);
+          if (!response) return;
           const chatroomId = response.chatroom._id;
 
           navigate(`/chatroom/${chatroomId}`);

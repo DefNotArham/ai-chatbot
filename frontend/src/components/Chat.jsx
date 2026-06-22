@@ -1,11 +1,18 @@
-import React from "react";
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import useMessageStore from "../stores/Message.store.js";
-import { useEffect } from "react";
+import useChatroomStore from "../stores/Chatroom.store.js";
+
+import { FaArrowRight } from "react-icons/fa";
+import { FaLocationArrow } from "react-icons/fa";
 
 const Chat = () => {
   const { chatroomId } = useParams();
-  const { Messages, currentChatLoading, loadCurrentChat } = useMessageStore();
+  const { Messages, currentChatLoading, loadCurrentChat, askaiLoading, askAi } =
+    useMessageStore();
+
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,14 +50,39 @@ const Chat = () => {
 
       {/* Input Area */}
       <div className="p-5 border-t border-white/10">
-        <form className="bg-input-bg border border-white/10 rounded-3xl p-3 flex items-center gap-3">
+        <form
+          onSubmit={async (e) => {
+            e.preventDefault();
+
+            if (askaiLoading) return;
+            if (!input.trim()) return;
+
+            await askAi(chatroomId, input);
+            setInput("");
+          }}
+          className="bg-input-bg border border-white/10 rounded-3xl p-3 flex items-center gap-3"
+        >
           <textarea
+            onChange={(e) => setInput(e.target.value)}
+            value={input}
+            onKeyDown={(e) => {
+              if (askaiLoading) return;
+
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+
+                e.currentTarget.form.requestSubmit();
+              }
+            }}
             placeholder="Message AI..."
             className="flex-1 bg-transparent resize-none outline-none text-white placeholder:text-slate-400 min-h-10"
           />
 
-          <button className="bg-blue-600 hover:bg-blue-700 transition rounded-xl px-5 py-3 text-white cursor-pointer">
-            Send
+          <button
+            disabled={askaiLoading}
+            className="bg-blue-600 hover:bg-blue-700 transition rounded-xl px-5 py-3 text-white cursor-pointer"
+          >
+            {askaiLoading ? "..." : <FaLocationArrow size={15} />}
           </button>
         </form>
       </div>

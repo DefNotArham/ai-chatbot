@@ -8,13 +8,15 @@ const createNewchatController = async (req, res) => {
   const { userMessage, sessionId } = req.body;
 
   try {
-    if (!userMessage)
+    if (!userMessage) {
       return res.status(400).json({
         success: false,
         message: "Message required",
       });
+    }
+
     const chatroom = await ChatRoom.create({
-      name: "New Chat",
+      name: "Generating...",
       sessionId,
     });
 
@@ -24,9 +26,15 @@ const createNewchatController = async (req, res) => {
       chatroom: chatroom._id,
     });
 
-    const aiResponse = await generateAiResponse(userMessage);
+    // Send conversation to AI
+    const aiResponse = await generateAiResponse([
+      {
+        role: "user",
+        content: userMessage,
+      },
+    ]);
 
-    const assistantMsg = await Message.create({
+    const aiMsg = await Message.create({
       role: "ai",
       content: aiResponse,
       chatroom: chatroom._id,
@@ -40,7 +48,7 @@ const createNewchatController = async (req, res) => {
     res.status(200).json({
       success: true,
       chatroom,
-      messages: [userMsg, assistantMsg],
+      messages: [userMsg, aiMsg],
     });
   } catch (error) {
     console.log(error);

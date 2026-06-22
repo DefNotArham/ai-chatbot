@@ -36,7 +36,12 @@ const askAiController = async (req, res) => {
       content: msg.content,
     }));
 
-    const aiResponse = await generateAiResponse(messages);
+    const aiResponse = await generateAiResponse([
+      {
+        role: "user",
+        content: userMessage,
+      },
+    ]);
 
     const aiMsg = await Message.create({
       role: "ai",

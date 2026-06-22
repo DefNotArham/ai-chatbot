@@ -13,9 +13,9 @@ const useChatroomStore = create((set) => ({
         params: { sessionId },
       });
 
-      set(() => ({
+      set({
         ChatRooms: response.data.Chatrooms,
-      }));
+      });
     } catch (error) {
       console.log(error);
     }
@@ -23,7 +23,9 @@ const useChatroomStore = create((set) => ({
 
   createChatRoom: async (userMessage, sessionId) => {
     try {
-      set({ createChatLoading: true });
+      set({
+        createChatLoading: true,
+      });
 
       const response = await axios.post(`${API_URL}/chatroom/create-chatroom`, {
         userMessage,
@@ -38,7 +40,12 @@ const useChatroomStore = create((set) => ({
       return response.data;
     } catch (error) {
       console.log(error);
-      set({ createChatLoading: false });
+
+      set({
+        createChatLoading: false,
+      });
+
+      return null;
     }
   },
 }));
