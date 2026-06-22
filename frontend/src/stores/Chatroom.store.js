@@ -6,7 +6,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 const useChatroomStore = create((set) => ({
   ChatRooms: [],
   createChatLoading: false,
-  loadCurrentChatLoading: false,
 
   loadChats: async (sessionId) => {
     try {

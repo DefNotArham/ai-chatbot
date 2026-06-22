@@ -11,9 +11,9 @@ const useMessageStore = create((set) => ({
     try {
       set({ currentChatLoading: true });
 
-      const response = await axios.get(`${API_URL}/chatroom/load-currentChat`, {
-        params: { chatroomId },
-      });
+      const response = await axios.get(
+        `${API_URL}/chatroom/load-currentChat/${chatroomId}`,
+      );
 
       set({
         Messages: response.data.messages,
@@ -25,3 +25,5 @@ const useMessageStore = create((set) => ({
     }
   },
 }));
+
+export default useMessageStore;

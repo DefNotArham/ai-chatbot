@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.get("/load-chats", loadChatsController);
 router.post("/create-chatroom", createNewchatController);
-router.get("/load-currentChat", loadCurrentChatController);
+router.get("/load-currentChat/:chatroomId", loadCurrentChatController);
 
 export default router;
