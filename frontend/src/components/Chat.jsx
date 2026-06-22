@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import useMessageStore from "../stores/Message.store.js";
 import useChatroomStore from "../stores/Chatroom.store.js";
@@ -26,6 +26,14 @@ const Chat = () => {
     fetchData();
   }, [chatroomId]);
 
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [Messages]);
+
+  const messagesEndRef = useRef(null);
+
   return (
     <div className="flex flex-col h-full w-[80%] bg-chat-background">
       {/* Messages Area */}
@@ -48,6 +56,8 @@ const Chat = () => {
             </div>
           ))
         )}
+
+        <div ref={messagesEndRef}></div>
       </div>
 
       {/* Input Area */}
