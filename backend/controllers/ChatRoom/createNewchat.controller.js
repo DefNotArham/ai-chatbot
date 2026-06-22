@@ -1,8 +1,8 @@
 import ChatRoom from "../../model/ChatRoom.model.js";
 import Message from "../../model/Message.model.js";
 
-import generateAiResponse from "../../gemini/generateAiResponse.js";
-import generateChatTitle from "../../gemini/generateChatTitle.js";
+import generateAiResponse from "../../openrouter/generateAiResponse.js";
+import generateChatTitle from "../../openrouter/generateChatTitle.js";
 
 const createNewchatController = async (req, res) => {
   const { userMessage, sessionId } = req.body;
