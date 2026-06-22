@@ -7,16 +7,11 @@ const openrouter = new OpenRouter({
   apiKey: process.env.OPENROUTER_API_KEY,
 });
 
-const generateAiResponse = async (userMessage) => {
+const generateAiResponse = async (messages) => {
   const response = await openrouter.chat.send({
     chatRequest: {
       model: "cohere/north-mini-code:free",
-      messages: [
-        {
-          role: "user",
-          content: userMessage,
-        },
-      ],
+      messages: messages,
     },
   });
 

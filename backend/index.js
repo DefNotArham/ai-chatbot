@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import connectDb from "./db/connectDb.js";
+
 import ChatRoomRoutes from "./routes/ChatRoom.route.js";
+import MessageRoutes from "./routes/Message.route.js";
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -20,5 +22,6 @@ app.use(
 );
 app.use(express.json());
 app.use("/chatroom", ChatRoomRoutes);
+app.use("/message", MessageRoutes);
 
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
