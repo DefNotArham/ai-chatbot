@@ -6,6 +6,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const useMessageStore = create((set) => ({
   Messages: [],
   currentChatLoading: false,
+  askaiLoading: false,
 
   loadCurrentChat: async (chatroomId) => {
     try {
@@ -22,6 +23,26 @@ const useMessageStore = create((set) => ({
     } catch (error) {
       console.log(error);
       set({ currentChatLoading: false });
+    }
+  },
+
+  askAi: async (chatroomId, userMessage) => {
+    try {
+      set({ askaiLoading: true });
+
+      const response = await axios.post(
+        `${API_URL}/message/askAi/${chatroomId}`,
+        { userMessage },
+      );
+
+      set((state) => ({
+        Messages: [...state.Messages, ...response.data.messages],
+        askaiLoading: false,
+      }));
+    } catch (error) {
+      console.log(error);
+
+      set({ askaiLoading: false });
     }
   },
 }));
