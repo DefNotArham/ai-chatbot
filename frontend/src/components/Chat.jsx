@@ -1,6 +1,9 @@
 import React from "react";
+import { useParams } from "react-router";
 
 const Chat = () => {
+  const { chatroomId } = useParams();
+
   return (
     <div className="flex flex-col h-full w-[80%] bg-chat-background">
       {/* Messages Area */}
