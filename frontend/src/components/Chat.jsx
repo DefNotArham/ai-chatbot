@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
+import ReactMarkdown from "react-markdown";
 
 import useMessageStore from "../stores/Message.store.js";
 import useChatroomStore from "../stores/Chatroom.store.js";
@@ -51,7 +52,7 @@ const Chat = () => {
                   m.role === "user" ? "bg-blue-600" : "bg-white/10"
                 }`}
               >
-                {m.content}
+                <ReactMarkdown>{m.content}</ReactMarkdown>
               </div>
             </div>
           ))
