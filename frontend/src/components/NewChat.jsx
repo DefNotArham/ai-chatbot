@@ -19,6 +19,8 @@ const NewChat = () => {
         onSubmit={async (e) => {
           e.preventDefault();
 
+          if (createChatLoading) return;
+
           if (!input.trim()) return;
           setInput("");
 
@@ -31,6 +33,16 @@ const NewChat = () => {
       >
         <textarea
           onChange={(e) => setInput(e.target.value)}
+          value={input}
+          onKeyDown={(e) => {
+            if (createChatLoading) return;
+
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+
+              e.currentTarget.form.requestSubmit();
+            }
+          }}
           placeholder="Ask anything..."
           className="flex-1 bg-transparent resize-none border-none outline-none text-white placeholder:text-slate-400 min-h-7"
         />

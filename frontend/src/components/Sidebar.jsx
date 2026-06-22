@@ -33,7 +33,7 @@ const Sidebar = () => {
           New Chat
         </button>
 
-        <div className="flex flex-col gap-2 mt-5 w-full">
+        <div className="flex flex-col gap-2 mt-5 w-full ">
           {createChatLoading && (
             <div className="text-sm h-10 px-3 w-full rounded-lg bg-white/4 flex items-center">
               <span className="animate-pulse">Generating chat...</span>
