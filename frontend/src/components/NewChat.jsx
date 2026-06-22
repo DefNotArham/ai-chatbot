@@ -4,6 +4,8 @@ import { FaArrowRight } from "react-icons/fa";
 import useChatroomStore from "../stores/Chatroom.store.js";
 import { useNavigate } from "react-router-dom";
 
+import spinner from "../assets/spinner.svg";
+
 const NewChat = () => {
   const [input, setInput] = useState("");
 
@@ -52,7 +54,11 @@ const NewChat = () => {
           disabled={createChatLoading}
           className="w-[42px] h-[42px] rounded-xl bg-blue-600 hover:bg-blue-700 transition text-white flex items-center justify-center cursor-pointer"
         >
-          {createChatLoading ? "..." : <FaArrowRight size={15} />}
+          {createChatLoading ? (
+            <img src={spinner} className="w-10 h-10 animate-spin" />
+          ) : (
+            <FaArrowRight size={15} />
+          )}
         </button>
       </form>
     </div>

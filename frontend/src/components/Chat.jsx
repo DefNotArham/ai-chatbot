@@ -7,6 +7,8 @@ import useChatroomStore from "../stores/Chatroom.store.js";
 import { FaArrowRight } from "react-icons/fa";
 import { FaLocationArrow } from "react-icons/fa";
 
+import spinner from "../assets/spinner.svg";
+
 const Chat = () => {
   const { chatroomId } = useParams();
   const { Messages, currentChatLoading, loadCurrentChat, askaiLoading, askAi } =
@@ -82,7 +84,11 @@ const Chat = () => {
             disabled={askaiLoading}
             className="bg-blue-600 hover:bg-blue-700 transition rounded-xl px-5 py-3 text-white cursor-pointer"
           >
-            {askaiLoading ? "..." : <FaLocationArrow size={15} />}
+            {askaiLoading ? (
+              <img src={spinner} className="w-6 h-6 animate-spin" />
+            ) : (
+              <FaLocationArrow size={15} />
+            )}
           </button>
         </form>
       </div>
